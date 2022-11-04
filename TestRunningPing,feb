@@ -1,0 +1,25 @@
+PyromaniacConfig dynamicarea.sparsemap_support=fake
+PyromaniacConfig messagetrans.support=full
+PyromaniacConfig timings.swi=yes
+PyromaniacConfig timings.execute=yes
+PyromaniacDebug traceblock
+
+Set Resources$Path resfs.
+Set Run$Path <Obey$Dir>.bin.,<Run$Path>
+Set OBSD$Path <Obey$Dir>.internet.
+Set OBSD$Dir <Obey$Dir>.internet
+
+echo Load MBufManager
+rmload rm.MBufManager
+
+echo Load Internet
+rmload rm.Internet
+
+echo Load Resolver
+rmload rm.Resolver
+
+echo Configure loopback
+bin.ifconfig lo0 127.0.0.1 up
+
+echo Try to ping ourselves
+bin.ping 127.0.0.1
